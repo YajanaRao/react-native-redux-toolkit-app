@@ -1,10 +1,17 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 
 export function TodoList() {
   const todos = useSelector((state) => state.todos);
-  console.log(todos);
+
+  if (!todos.length) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Start creating a new todo</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Todo List</Text>
@@ -23,7 +30,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   todoText: {
     margin: 4,
